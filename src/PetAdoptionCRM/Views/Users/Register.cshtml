@@ -15,31 +15,31 @@
     <div class="form-group">
         @Html.LabelFor(m => m.FirstName)
         @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.FirstName)
+        @Html.ValidationMessageFor(m => m.FirstName, null, new { @class = "text-danger" })
     </div>
 
     <div class="form-group">
         @Html.LabelFor(m => m.LastName)
         @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.LastName)
+        @Html.ValidationMessageFor(m => m.LastName, null, new { @class = "text-danger" })
     </div>
 
     <div class="form-group">
         @Html.LabelFor(m => m.Email)
         @Html.TextBoxFor(m => m.Email, new { @class = "form-control", type = "email", required = "required" })
-        @Html.ValidationMessageFor(m => m.Email)
+        @Html.ValidationMessageFor(m => m.Email, null, new { @class = "text-danger" })
     </div>
 
     <div class="form-group">
         @Html.LabelFor(m => m.Password)
         @Html.TextBoxFor(m => m.Password, new { @class = "form-control", type = "password", required = "required" })
-        @Html.ValidationMessageFor(m => m.Password)
+        @Html.ValidationMessageFor(m => m.Password, null, new { @class = "text-danger" })
     </div>
 
     <div class="form-group">
         @Html.LabelFor(m => m.ConfirmPassword)
         @Html.TextBoxFor(m => m.ConfirmPassword, new { @class = "form-control", type = "password", required = "required" })
-        @Html.ValidationMessageFor(m => m.ConfirmPassword)
+        @Html.ValidationMessageFor(m => m.ConfirmPassword, null, new { @class = "text-danger" })
     </div>
 
     <input type="submit" value="Register" class="btn btn-primary" />
