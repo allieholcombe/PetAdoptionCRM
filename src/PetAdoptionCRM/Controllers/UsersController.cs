@@ -129,5 +129,17 @@ namespace PetAdoptionCRM.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
+
+        ////Verify Email
+        //[AcceptVerbs("Get", "Post")]
+        //public IActionResult VerifyEmail(string email)
+        //{
+        //    if (!_db.VerifyEmail(email))
+        //    {
+        //        return Json(data: $"Email {email} is already in use.");
+        //    }
+
+        //    return Json(data: true);
+        //}
     }
 }
