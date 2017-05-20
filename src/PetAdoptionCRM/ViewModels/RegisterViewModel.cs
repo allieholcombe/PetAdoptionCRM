@@ -22,6 +22,7 @@ namespace PetAdoptionCRM.ViewModels
         [Required(ErrorMessage = "Please enter email.")]
         [EmailAddress(ErrorMessage = "Invalid email address. Valid e-mail can contain only latin letters, numbers, '@' and '.'")]
         [Display(Name = "Email")]
+        [Remote(action: "VerifyEmail", controller: "Users")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Please enter password.")]
