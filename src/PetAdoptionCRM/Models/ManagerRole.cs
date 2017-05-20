@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace PetAdoptionCRM.Models
 {
-    public class EmployeeRole : IdentityRole
+    public class ManagerRole : IdentityRole
     {
+
     }
 }
