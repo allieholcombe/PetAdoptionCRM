@@ -16,6 +16,7 @@ namespace PetAdoptionCRM.Models
 
         public DbSet<UserProfile> UserProfiles { get; set; }
         public DbSet<Pet> Pets { get; set; }
+        public DbSet<Species> Species { get; set; }
 
         public ApplicationContext(DbContextOptions options) : base(options)
         {
