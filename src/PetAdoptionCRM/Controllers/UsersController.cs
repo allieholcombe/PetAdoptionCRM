@@ -100,22 +100,27 @@ namespace PetAdoptionCRM.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
-            var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };
-            IdentityResult result = await _userManager.CreateAsync(user, model.Password);
-            if (result.Succeeded)
+            if (ModelState.IsValid)
             {
-                UserProfile profile = new UserProfile { ApplicationUserId = user.Id, FirstName = model.FirstName, LastName = model.LastName };
-                //profile.ApplicationUserId = user.Id;
-                //profile.FirstName = model.FirstName;
-                //profile.LastName = model.LastName;
-                _db.UserProfiles.Add(profile);
-                _db.SaveChanges();
-                return RedirectToAction("Index", "WINNER");
+                model.CreateUserName();
+                var user = new ApplicationUser { UserName = model.UserName, Email = model.Email };
+                IdentityResult result = await _userManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    UserProfile profile = new UserProfile { ApplicationUserId = user.Id, FirstName = model.FirstName, LastName = model.LastName };
+                    //profile.ApplicationUserId = user.Id;
+                    //profile.FirstName = model.FirstName;
+                    //profile.LastName = model.LastName;
+                    _db.UserProfiles.Add(profile);
+                    _db.SaveChanges();
+                    return RedirectToAction("Index", "WINNER");
+                }
+                else
+                {
+                    return View();
+                }
             }
-            else
-            {
-                return View();
-            }
+            return View();
         }
 
         [HttpPost]
