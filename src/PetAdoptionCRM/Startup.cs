@@ -44,9 +44,9 @@ namespace PetAdoptionCRM
 
             services.AddMvc();
             services.AddEntityFramework()
-                .AddDbContext<EtsyContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+                .AddDbContext<ApplicationContext>(options => options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
             services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<EtsyContext>()
+                .AddEntityFrameworkStores<ApplicationContext>()
                 .AddDefaultTokenProviders();
         }
 
