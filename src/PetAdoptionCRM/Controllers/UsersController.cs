@@ -110,7 +110,7 @@ namespace PetAdoptionCRM.Controllers
                 //profile.LastName = model.LastName;
                 _db.UserProfiles.Add(profile);
                 _db.SaveChanges();
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "WINNER");
             }
             else
             {
