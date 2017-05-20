@@ -10,6 +10,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PetAdoptionCRM.Models
 {
+    //Uses EntityFramework IdentityUser class
     public class ApplicationUser : IdentityUser
     {
     }
