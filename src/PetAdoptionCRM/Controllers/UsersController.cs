@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace PetAdoptionCRM.Controllers
 {
-    public class AccountController : Controller
+    public class UsersController : Controller
     {
 
         private readonly ApplicationContext _db;
@@ -22,7 +22,7 @@ namespace PetAdoptionCRM.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         //private readonly RoleManager<Role> _roleManager;
 
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ApplicationContext db)
+        public UsersController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, ApplicationContext db)
         {
             _userManager = userManager;
             _signInManager = signInManager;
