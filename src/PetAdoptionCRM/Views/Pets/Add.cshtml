@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewData["Title"] = "Add New Pet";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using PetAdoptionCRM.ViewModels;
+
+@model AddPetViewModel
+
+<h2>Register a new Account</h2>
+
+@using (Html.BeginForm("Add", "Pets", FormMethod.Post))
+{
+    @Html.HiddenFor(m => m.AddedBy)
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Name, null, new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Species)
+        @Html.TextBoxFor(m => m.Species, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Species, null, new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Breed)
+        @Html.TextBoxFor(m => m.Breed, new { @class = "form-control", type = "Breed", required = "required" })
+        @Html.ValidationMessageFor(m => m.Breed, null, new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Sex)
+        @Html.TextBoxFor(m => m.Sex, new { @class = "form-control", type = "password", required = "required" })
+        @Html.ValidationMessageFor(m => m.Sex, null, new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Size)
+        @Html.TextBoxFor(m => m.Size, new { @class = "form-control", type = "password", required = "required" })
+        @Html.ValidationMessageFor(m => m.Size, null, new { @class = "text-danger" })
+    </div>
+
+    <input type="submit" value="Register" class="btn btn-primary" />
+}
