@@ -61,7 +61,7 @@ namespace PetAdoptionCRM.Controllers
         {
             var selectedSpecies = _db.Species.FirstOrDefault(s => s.Name == species);
             var breeds = new List<Breed>();
-            breeds = _db.Breeds.Where(b => b.SpeciesId == selectedSpecies.Id); //call repository
+            breeds = _db.Breeds.Where(b => b.SpeciesId == selectedSpecies.Id).ToList();
             return Json(breeds);
         }
     }

@@ -12,6 +12,8 @@ namespace PetAdoptionCRM.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public int SpeciesId { get; set; }
+        public Species Species { get; set; }
 
         //public static List<Breed> GetBreeds(Species species)
         //{
