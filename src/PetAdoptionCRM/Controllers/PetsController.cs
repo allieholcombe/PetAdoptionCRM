@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using PetAdoptionCRM.Models;
 using PetAdoptionCRM.ViewModels;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -30,7 +31,18 @@ namespace PetAdoptionCRM.Controllers
 
         public IActionResult Add()
         {
+            Species currentSpecies = _db.Species.FirstOrDefault(s => s.Name == "dog");
+            //Breed.GetBreeds(currentSpecies);
             AddPetViewModel vm = new AddPetViewModel();
+            List<Species> speciesList = _db.Species.ToList();
+            IEnumerable<SelectListItem> selectList =
+                from s in speciesList
+                select new SelectListItem
+                {
+                    Text = s.DisplayName,
+                    Value = s.Name
+                };
+            vm.Species = selectList;
             vm.Pet = new Pet();
             vm.Pet.AddedBy = _userManager.GetUserId(HttpContext.User);
             return View(vm);

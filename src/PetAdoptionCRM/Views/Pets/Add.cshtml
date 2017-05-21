@@ -22,11 +22,11 @@
 
     <div class="form-group">
         @Html.LabelFor(m => m.Pet.Species)
-        @Html.TextBoxFor(m => m.Pet.Species, new { @class = "form-control" })
+        @Html.DropDownListFor(m => m.Pet.Species, @Model.Species, "Select Species", new { @class = "form-control", @id = "species-selector", required = "required" })
         @Html.ValidationMessageFor(m => m.Pet.Species, null, new { @class = "text-danger" })
     </div>
 
-    <div class="form-group">
+    <div class="form-group" id="breed-form-div">
         @Html.LabelFor(m => m.Pet.Breed)
         @Html.TextBoxFor(m => m.Pet.Breed, new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.Pet.Breed, null, new { @class = "text-danger" })
