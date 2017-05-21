@@ -28,19 +28,19 @@
 
     <div class="form-group">
         @Html.LabelFor(m => m.Pet.Breed)
-        @Html.TextBoxFor(m => m.Pet.Breed, new { @class = "form-control", type = "Breed", required = "required" })
+        @Html.TextBoxFor(m => m.Pet.Breed, new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.Pet.Breed, null, new { @class = "text-danger" })
     </div>
 
     <div class="form-group">
         @Html.LabelFor(m => m.Pet.Sex)
-        @Html.TextBoxFor(m => m.Pet.Sex, new { @class = "form-control", type = "password", required = "required" })
+        @Html.TextBoxFor(m => m.Pet.Sex, new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.Pet.Sex, null, new { @class = "text-danger" })
     </div>
 
     <div class="form-group">
         @Html.LabelFor(m => m.Pet.Size)
-        @Html.TextBoxFor(m => m.Pet.Size, new { @class = "form-control", type = "password", required = "required" })
+        @Html.TextBoxFor(m => m.Pet.Size, new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.Pet.Size, null, new { @class = "text-danger" })
     </div>
 

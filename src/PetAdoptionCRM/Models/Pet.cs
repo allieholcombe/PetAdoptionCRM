@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PetAdoptionCRM.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -35,5 +36,6 @@ namespace PetAdoptionCRM.Models
         public string AddedBy { get; set; }
 
         public virtual ApplicationUser ApplicationUser { get; set; }
+
     }
 }
