@@ -56,5 +56,13 @@ namespace PetAdoptionCRM.Controllers
             _db.SaveChanges();
             return RedirectToAction("Index", "Pets");
         }
+
+        public IActionResult PopulateBreedList(string species)
+        {
+            var selectedSpecies = _db.Species.FirstOrDefault(s => s.Name == species);
+            var breeds = new List<Breed>();
+            breeds = _db.Breeds.Where(b => b.SpeciesId == selectedSpecies.Id); //call repository
+            return Json(breeds);
+        }
     }
 }
