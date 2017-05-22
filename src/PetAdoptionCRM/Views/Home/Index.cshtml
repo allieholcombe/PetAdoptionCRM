@@ -1,6 +1,12 @@
 ﻿@{
     ViewData["Title"] = "Register";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
 
-@Html.ActionLink("Register", "Register", "Users");
+<div id="home-container">
+    <div class="sub-container">
+        <h1>AdoptCare</h1>
+        @Html.ActionLink("Log In", "Login", "Users", null, new { @class = "btn btn-default btn-block" })
+        @Html.ActionLink("Register", "Register", "Users", null, new { @class = "btn btn-default btn-block" })
+    </div>
+</div>

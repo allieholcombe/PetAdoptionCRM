@@ -1,0 +1,20 @@
+﻿$deep-gray: #333333;
+
+body {
+    background-image: url('../images/dog-fullscreen.jpeg');
+    background-size: cover;
+}
+
+#home-container {
+    max-width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+
+    h1 {
+        font-size: 72px;
+        font-family: 'Montserrat Subrayada', sans-serif;
+        color: $deep-gray;
+    }
+}
