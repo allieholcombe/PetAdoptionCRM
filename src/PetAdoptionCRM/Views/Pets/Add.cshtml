@@ -27,7 +27,7 @@
     </div>
 
         <div class="form-group" id="breed-form-div">
-            @Html.LabelFor(m => m.Pet.BreedId)
+            @Html.Label("Breed")
             @Html.DropDownListFor(m => m.Pet.BreedId, Enumerable.Empty<SelectListItem>(), "-- Loading Values --", new { @class = "form-control", @id="breed-selector" })
             @Html.ValidationMessageFor(m => m.Pet.BreedId, null, new { @class = "text-danger" })
         </div>
@@ -42,10 +42,34 @@
     </div>
 
     <div class="form-group">
+        @Html.LabelFor(m => m.Pet.About)
+        @Html.TextAreaFor(m => m.Pet.About, new { @class="form-control"})
+        @Html.ValidationMessageFor(m => m.Pet.About, null, new { @class = "text-danger"})
+    </div>
+
+    //Cool, but not MVP
+    @*<div id="dog-specific-inputs">
+        <div class="form-group switch-field">
+            @foreach (var size in ViewBag.DogSizes)
+            {
+                @Html.RadioButtonFor(m => m.Pet.Size, size.Name, new { @id = size.Name + "dog" })
+            }
+        </div>
+    </div>
+
+    <div id="cat-specific-inputs">
+
+    </div>
+
+    <div id="bird-specific-inputs">
+
+    </div>
+
+    <div class="form-group">
         @Html.LabelFor(m => m.Pet.Size)
         @Html.TextBoxFor(m => m.Pet.Size, new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.Pet.Size, null, new { @class = "text-danger" })
-    </div>
+    </div>*@
 
     <input type="submit" value="Register" class="btn btn-primary" />
 }

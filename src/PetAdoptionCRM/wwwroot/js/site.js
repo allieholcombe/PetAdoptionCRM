@@ -1,5 +1,6 @@
 ﻿$(function () {
 
+
     function fetchBreeds() {
         //console.log("Fetching");
         //var url = '@Url.Action("PopulateBreedList","Pets")';
@@ -37,7 +38,6 @@
 
 
     $("#species-selector").change(function () {
-        console.log("Fired");
         fetchBreeds();
     });
 });

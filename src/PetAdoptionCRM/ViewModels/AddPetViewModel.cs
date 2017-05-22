@@ -14,5 +14,6 @@ namespace PetAdoptionCRM.ViewModels
         public IEnumerable<SelectListItem> Breeds { get; set; }
         public IEnumerable<SelectListItem> Species { get; set; }
 
+        public IEnumerable<SelectListItem> PetSizes { get; set; }
     }
 }
