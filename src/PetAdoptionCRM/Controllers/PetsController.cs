@@ -31,8 +31,6 @@ namespace PetAdoptionCRM.Controllers
 
         public IActionResult Add()
         {
-            Species currentSpecies = _db.Species.FirstOrDefault(s => s.Name == "dog");
-            //Breed.GetBreeds(currentSpecies);
             AddPetViewModel vm = new AddPetViewModel();
             List<Species> speciesList = _db.Species.ToList();
             IEnumerable<SelectListItem> selectList =
@@ -40,13 +38,13 @@ namespace PetAdoptionCRM.Controllers
                 select new SelectListItem
                 {
                     Text = s.DisplayName,
-                    Value = s.Name
+                    Value = s.Id.ToString()
                 };
             vm.Species = selectList;
             vm.Pet = new Pet();
             vm.Pet.AddedBy = _userManager.GetUserId(HttpContext.User);
             List<Breed> breedList = new List<Breed>();
-            ViewBag.Breeds = new SelectList(breedList);
+            ViewBag.BreedList = new SelectList(breedList);
             return View(vm);
         }
 
@@ -61,7 +59,7 @@ namespace PetAdoptionCRM.Controllers
 
         public JsonResult PopulateBreedList(string speciesVal)
         {
-            var selectedSpecies = _db.Species.FirstOrDefault(s => s.Name == speciesVal);
+            var selectedSpecies = _db.Species.FirstOrDefault(s => s.Id == int.Parse(speciesVal));
             var BreedsList = new List<Breed>();
             BreedsList = _db.Breeds.Where(b => b.SpeciesId == selectedSpecies.Id).ToList();
             return Json(BreedsList);
