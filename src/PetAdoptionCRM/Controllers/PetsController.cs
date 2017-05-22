@@ -34,6 +34,11 @@ namespace PetAdoptionCRM.Controllers
             {
                 PetsIndexViewModel vm = new PetsIndexViewModel();
                 vm.AllPets = _db.Pets.Include(s => s.Species).Include(s => s.Breed).OrderByDescending(s => s.Id).ToList();
+                foreach (var pet in vm.AllPets)
+                {
+                    pet.ImageKey = vm.ModifyImageKey(pet);
+                }
+
                 if (vm.AllPets.Count() < 1)
                 {
                     return RedirectToAction("Add", "Pets");
