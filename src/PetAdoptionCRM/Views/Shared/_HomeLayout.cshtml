@@ -22,6 +22,7 @@
     @*@Html.ApplicationInsightsJavaScript(TelemetryConfiguration)*@
 </head>
 <body>
+    @Component.InvokeAsync("Navbar");
     <div>
         @RenderBody()
     </div>
