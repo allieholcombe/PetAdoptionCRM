@@ -38,6 +38,7 @@ namespace PetAdoptionCRM.Models
         public string AddedBy { get; set; }
 
         public virtual ApplicationUser ApplicationUser { get; set; }
+        public string ImageKey { get; set; }
 
     }
 }

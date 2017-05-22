@@ -9,6 +9,7 @@
     @if (@Model.AllPets.Count() == 1)
     {
         <div class="pet-tile">
+            <img src="@Model.OnePet.ImageKey">
             <h3>@Model.OnePet.Name</h3>
             <p>@Model.OnePet.Species.DisplayName</p>
             <p>@Model.OnePet.Breed.Name</p>
@@ -20,6 +21,7 @@
         @foreach (var pet in @Model.AllPets)
         {
             <div class="pet-tile">
+                <img src="@pet.ImageKey">
                 <h3>@pet.Name</h3>
                 <p>@pet.Species.DisplayName</p>
                 <p>@pet.Breed.Name</p>

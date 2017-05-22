@@ -71,6 +71,11 @@ namespace PetAdoptionCRM.Controllers
         [HttpPost]
         public IActionResult Add(AddPetViewModel vm)
         {
+            if(vm.Pet.ImageKey == null)
+            {
+                vm.Pet.ImageKey = "~/images/defaultpet.png";
+            }
+
             Pet newPet = vm.Pet;
             _db.Pets.Add(newPet);
             _db.SaveChanges();
