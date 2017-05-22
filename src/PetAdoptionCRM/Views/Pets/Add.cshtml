@@ -8,7 +8,7 @@
 
 @model AddPetViewModel
 
-<h2>Register a new Account</h2>
+<h2>Add Pet</h2>
 
 @using (Html.BeginForm("Add", "Pets", FormMethod.Post))
 {
@@ -21,7 +21,7 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(m => m.Pet.SpeciesId)
+        @Html.Label("Species")
         @Html.DropDownListFor(m => m.Pet.SpeciesId, @Model.Species, "Select Species", new { @class = "form-control", @id = "species-selector", required = "required" })
         @Html.ValidationMessageFor(m => m.Pet.SpeciesId, null, new { @class = "text-danger" })
     </div>
@@ -32,9 +32,12 @@
             @Html.ValidationMessageFor(m => m.Pet.BreedId, null, new { @class = "text-danger" })
         </div>
 
-    <div class="form-group">
-        @Html.LabelFor(m => m.Pet.Sex)
-        @Html.TextBoxFor(m => m.Pet.Sex, new { @class = "form-control" })
+    <div class="form-group switch-field">
+        <div class="switch-title">Sex</div>
+        @Html.RadioButtonFor(m => m.Pet.Sex, "Male", new { @id = "male-sex"})
+        <label for="male-sex">Male</label>
+        @Html.RadioButtonFor(m => m.Pet.Sex, "Female", new { @id = "female-sex" })
+        <label for="female-sex">Female</label>
         @Html.ValidationMessageFor(m => m.Pet.Sex, null, new { @class = "text-danger" })
     </div>
 
