@@ -8,6 +8,7 @@ using PetAdoptionCRM.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Hosting;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -17,11 +18,13 @@ namespace PetAdoptionCRM.Controllers
     {
         private readonly ApplicationContext _db;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly IHostingEnvironment _env;
 
-        public PetsController(ApplicationContext db, UserManager<ApplicationUser> userManager)
+        public PetsController(ApplicationContext db, UserManager<ApplicationUser> userManager, IHostingEnvironment env)
         {
             _db = db;
             _userManager = userManager;
+            _env = env;
         }
 
         // GET: /<controller>/
@@ -73,7 +76,7 @@ namespace PetAdoptionCRM.Controllers
         {
             if (vm.Pet.ImageKey == null)
             {
-                vm.Pet.ImageKey = "images/defaultpet.png";
+                vm.Pet.ImageKey = "../images/defaultpet.png";
             }
 
             Pet newPet = vm.Pet;
@@ -94,7 +97,7 @@ namespace PetAdoptionCRM.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                Pet thisPet = _db.Pets.FirstOrDefault(p => p.Id == Id);
+                Pet thisPet = _db.Pets.Include(s => s.Species).Include(s => s.Breed).FirstOrDefault(p => p.Id == Id);
                 PetDetailsViewModel vm = new PetDetailsViewModel();
                 vm.Pet = thisPet;
                 return View(vm);

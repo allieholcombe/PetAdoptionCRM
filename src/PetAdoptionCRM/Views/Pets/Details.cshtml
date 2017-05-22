@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "@Model.Name";
+    ViewData["Title"] = @Model.Pet.Name;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -11,7 +11,7 @@
 <div class="pet-details">
     <div class="row">
         <div class="col-md-5">
-            <img src="@Model.Pet.ImageKey" />
+            <img src="@Page.ResolveUrl(@Model.Pet.ImageKey)" />
         </div>
         <div class="col-md-7">
             <ul class="unstyled">
