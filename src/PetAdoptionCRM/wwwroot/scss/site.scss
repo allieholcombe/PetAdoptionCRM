@@ -56,3 +56,29 @@
         border-radius: 0 4px 4px 0;
     }
 }
+
+//For Pets Index
+.all-pets {
+    border: 2px solid red;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    padding: 1%;
+}
+
+.pet-tile {
+    padding: 10px;
+    /*max-width: 23%;*/
+    border: 1px solid #e7e7e7;
+    flex: 0 0 24%;
+    margin: 1% 0;
+
+    &:nth-child(3n-1) {
+        margin-left: 2%;
+        margin-right: 2%;
+    }
+
+    img {
+        max-width: 100%;
+    }
+}

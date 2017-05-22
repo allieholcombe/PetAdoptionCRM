@@ -73,7 +73,7 @@ namespace PetAdoptionCRM.Controllers
         {
             if(vm.Pet.ImageKey == null)
             {
-                vm.Pet.ImageKey = "~/images/defaultpet.png";
+                vm.Pet.ImageKey = "images/defaultpet.png";
             }
 
             Pet newPet = vm.Pet;
