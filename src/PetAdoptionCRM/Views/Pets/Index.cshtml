@@ -6,7 +6,7 @@
 @model PetsIndexViewModel
 
 <div class="all-pets">
-    @if (Model.OnePet != null)
+    @if (@Model.OnePet != null)
     {
         <div class="pet-tile">
             <h3>@Model.OnePet.Name</h3>
@@ -17,7 +17,7 @@
     }
     else
     {
-        @foreach (var pet in Model.AllPets)
+        @foreach (var pet in @Model.AllPets)
         {
             <div class="pet-tile">
                 <h3>@pet.Name</h3>

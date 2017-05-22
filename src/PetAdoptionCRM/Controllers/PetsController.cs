@@ -7,6 +7,7 @@ using PetAdoptionCRM.Models;
 using PetAdoptionCRM.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -27,7 +28,7 @@ namespace PetAdoptionCRM.Controllers
         public IActionResult Index(string sortOrder)
         {
             PetsIndexViewModel vm = new PetsIndexViewModel();
-            vm.AllPets = _db.Pets.OrderByDescending(s => s.Id).ToList();
+            vm.AllPets = _db.Pets.Include(s => s.Species).Include(s => s.Breed).OrderByDescending(s => s.Id).ToList();
             if (vm.AllPets.Count() < 1)
             {
                 return RedirectToAction("Add", "Pets");
