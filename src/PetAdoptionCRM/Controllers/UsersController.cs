@@ -83,7 +83,7 @@ namespace PetAdoptionCRM.Controllers
 
             if (result.Succeeded)
             {
-                return RedirectToAction("WINNER", "Home");
+                return RedirectToAction("Index", "Pets");
             }
             else
             {
@@ -124,10 +124,12 @@ namespace PetAdoptionCRM.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> LogOff()
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> LogOut()
         {
             await _signInManager.SignOutAsync();
-            return RedirectToAction("Index", "Home");
+            //_logger.LogInformation(4, "User logged out.");
+            return RedirectToAction(nameof(HomeController.Index), "Home");
         }
 
         ////Verify Email
