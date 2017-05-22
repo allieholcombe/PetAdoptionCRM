@@ -28,6 +28,7 @@ namespace PetAdoptionCRM.Controllers
         public IActionResult Index(string sortOrder)
         {
             PetsIndexViewModel vm = new PetsIndexViewModel();
+            vm.OnePet = null;
             vm.AllPets = _db.Pets.Include(s => s.Species).Include(s => s.Breed).OrderByDescending(s => s.Id).ToList();
             if (vm.AllPets.Count() < 1)
             {

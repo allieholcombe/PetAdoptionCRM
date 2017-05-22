@@ -6,7 +6,7 @@
 @model PetsIndexViewModel
 
 <div class="all-pets">
-    @if (@Model.OnePet != null)
+    @if (@Model.AllPets.Count() == 1)
     {
         <div class="pet-tile">
             <h3>@Model.OnePet.Name</h3>
