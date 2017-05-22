@@ -71,5 +71,5 @@
         @Html.ValidationMessageFor(m => m.Pet.Size, null, new { @class = "text-danger" })
     </div>*@
 
-    <input type="submit" value="Register" class="btn btn-primary" />
+    <input type="submit" value="Add Pet" class="btn btn-primary" /> @Html.ActionLink("Back", "Index", null, null, new { @class = "btn btn-default" })
 }

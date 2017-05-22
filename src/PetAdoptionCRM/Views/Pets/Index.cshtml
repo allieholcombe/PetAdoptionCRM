@@ -2,3 +2,30 @@
     ViewData["Title"] = "Register";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@using PetAdoptionCRM.ViewModels;
+@model PetsIndexViewModel
+
+<div class="all-pets">
+    @if (Model.OnePet != null)
+    {
+        <div class="pet-tile">
+            <h3>@Model.OnePet.Name</h3>
+            <p>@Model.OnePet.Species.DisplayName</p>
+            <p>@Model.OnePet.Breed.Name</p>
+            <p>@Model.OnePet.About</p>
+        </div>
+    }
+    else
+    {
+        @foreach (var pet in Model.AllPets)
+        {
+            <div class="pet-tile">
+                <h3>@pet.Name</h3>
+                <p>@pet.Species.DisplayName</p>
+                <p>@pet.Breed.Name</p>
+                <p>@pet.About</p>
+            </div>
+
+        }
+    }
+</div>

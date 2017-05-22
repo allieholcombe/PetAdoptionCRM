@@ -24,9 +24,20 @@ namespace PetAdoptionCRM.Controllers
         }
 
         // GET: /<controller>/
-        public IActionResult Index()
+        public IActionResult Index(string sortOrder)
         {
-            return View();
+            PetsIndexViewModel vm = new PetsIndexViewModel();
+            vm.AllPets = _db.Pets.OrderByDescending(s => s.Id).ToList();
+            if (vm.AllPets.Count() < 1)
+            {
+                return RedirectToAction("Add", "Pets");
+            }
+            if (vm.AllPets.Count() == 1)
+            {
+                vm.OnePet = vm.AllPets.ElementAt(0);
+                return View(vm);
+            }
+            return View(vm);
         }
 
         public IActionResult Add()
