@@ -27,38 +27,45 @@ namespace PetAdoptionCRM.Controllers
         // GET: /<controller>/
         public IActionResult Index(string sortOrder)
         {
-            PetsIndexViewModel vm = new PetsIndexViewModel();
-            vm.OnePet = null;
-            vm.AllPets = _db.Pets.Include(s => s.Species).Include(s => s.Breed).OrderByDescending(s => s.Id).ToList();
-            if (vm.AllPets.Count() < 1)
-            {
-                return RedirectToAction("Add", "Pets");
-            }
-            if (vm.AllPets.Count() == 1)
-            {
-                vm.OnePet = vm.AllPets.ElementAt(0);
+            if (User.Identity.IsAuthenticated)
+                {
+                PetsIndexViewModel vm = new PetsIndexViewModel();
+                vm.AllPets = _db.Pets.Include(s => s.Species).Include(s => s.Breed).OrderByDescending(s => s.Id).ToList();
+                if (vm.AllPets.Count() < 1)
+                {
+                    return RedirectToAction("Add", "Pets");
+                }
+                if (vm.AllPets.Count() == 1)
+                {
+                    vm.OnePet = vm.AllPets.ElementAt(0);
+                    return View(vm);
+                }
                 return View(vm);
             }
-            return View(vm);
+            return RedirectToAction("Index", "Home");
         }
 
         public IActionResult Add()
         {
-            AddPetViewModel vm = new AddPetViewModel();
-            List<Species> speciesList = _db.Species.ToList();
-            IEnumerable<SelectListItem> selectList =
-                from s in speciesList
-                select new SelectListItem
-                {
-                    Text = s.DisplayName,
-                    Value = s.Id.ToString()
-                };
-            vm.Species = selectList;
-            vm.Pet = new Pet();
-            vm.Pet.AddedBy = _userManager.GetUserId(HttpContext.User);
-            List<Breed> breedList = new List<Breed>();
-            ViewBag.BreedList = new SelectList(breedList);
-            return View(vm);
+            if (User.Identity.IsAuthenticated)
+            {
+                AddPetViewModel vm = new AddPetViewModel();
+                List<Species> speciesList = _db.Species.ToList();
+                IEnumerable<SelectListItem> selectList =
+                    from s in speciesList
+                    select new SelectListItem
+                    {
+                        Text = s.DisplayName,
+                        Value = s.Id.ToString()
+                    };
+                vm.Species = selectList;
+                vm.Pet = new Pet();
+                vm.Pet.AddedBy = _userManager.GetUserId(HttpContext.User);
+                List<Breed> breedList = new List<Breed>();
+                ViewBag.BreedList = new SelectList(breedList);
+                return View(vm);
+            }
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]
