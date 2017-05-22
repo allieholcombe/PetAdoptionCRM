@@ -18,6 +18,10 @@
     @*@Html.ApplicationInsightsJavaScript(TelemetryConfiguration)*@
 </head>
 <body>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <p>@User.Identity.Name</p>
+    }
     <div class="container">
         @RenderBody()
     </div>

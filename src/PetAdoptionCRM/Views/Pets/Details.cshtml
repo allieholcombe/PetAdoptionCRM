@@ -1,4 +1,30 @@
 ﻿@{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "@Model.Name";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+@using PetAdoptionCRM.ViewModels
+
+@model PetDetailsViewModel
+
+<h1>@Model.Pet.Name</h1>
+<div class="pet-details">
+    <div class="row">
+        <div class="col-md-5">
+            <img src="@Model.Pet.ImageKey" />
+        </div>
+        <div class="col-md-7">
+            <ul class="unstyled">
+                <li>
+                    <span class="title">Species : </span> @Model.Pet.Species.DisplayName
+                </li>
+                <li>
+                    <span class="title">Breed : </span> @Model.Pet.Breed.Name
+                </li>
+                <li>
+                    <span class="title">Sex : </span> @Model.Pet.Sex
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

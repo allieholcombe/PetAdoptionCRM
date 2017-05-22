@@ -28,7 +28,7 @@ namespace PetAdoptionCRM.Controllers
         public IActionResult Index(string sortOrder)
         {
             if (User.Identity.IsAuthenticated)
-                {
+            {
                 PetsIndexViewModel vm = new PetsIndexViewModel();
                 vm.AllPets = _db.Pets.Include(s => s.Species).Include(s => s.Breed).OrderByDescending(s => s.Id).ToList();
                 if (vm.AllPets.Count() < 1)
@@ -71,7 +71,7 @@ namespace PetAdoptionCRM.Controllers
         [HttpPost]
         public IActionResult Add(AddPetViewModel vm)
         {
-            if(vm.Pet.ImageKey == null)
+            if (vm.Pet.ImageKey == null)
             {
                 vm.Pet.ImageKey = "images/defaultpet.png";
             }
@@ -88,6 +88,18 @@ namespace PetAdoptionCRM.Controllers
             var BreedsList = new List<Breed>();
             BreedsList = _db.Breeds.Where(b => b.SpeciesId == selectedSpecies.Id).ToList();
             return Json(BreedsList);
+        }
+
+        public IActionResult Details(int Id)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                Pet thisPet = _db.Pets.FirstOrDefault(p => p.Id == Id);
+                PetDetailsViewModel vm = new PetDetailsViewModel();
+                vm.Pet = thisPet;
+                return View(vm);
+            }
+            return RedirectToAction("Home", "Index");
         }
     }
 }

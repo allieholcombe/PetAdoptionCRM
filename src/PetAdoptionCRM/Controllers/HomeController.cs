@@ -13,6 +13,10 @@ namespace PetAdoptionCRM.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Pets");
+            }
             return View();
         }
     }
