@@ -16,6 +16,7 @@ namespace PetAdoptionCRM.Models
 
         public DbSet<UserProfile> UserProfiles { get; set; }
         public DbSet<Pet> Pets { get; set; }
+
         public DbSet<Species> Species { get; set; }
         public DbSet<Breed> Breeds { get; set; }
 
@@ -27,7 +28,7 @@ namespace PetAdoptionCRM.Models
         //Connects to Azure SQL Server
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseSqlServer("Server=tcp:petadoptioncrm.database.windows.net,1433;Initial Catalog=PetAdoptionCRM_db;Persist Security Info=False;User ID=AllieH;Password=Thispw12!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
+            options.UseSqlServer("Server=tcp:petadoptioncrm.database.windows.net,1433;Initial Catalog=PetAdoptionCRM_db_2017-05-21T16-00Z;Persist Security Info=False;User ID=AllieH;Password=Thispw12!;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
         }
 
 

@@ -301,7 +301,7 @@ namespace PetAdoptionCRM.Migrations
             modelBuilder.Entity("PetAdoptionCRM.Models.Breed", b =>
                 {
                     b.HasOne("PetAdoptionCRM.Models.Species", "Species")
-                        .WithMany("Breeds")
+                        .WithMany()
                         .HasForeignKey("SpeciesId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

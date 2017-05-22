@@ -8,8 +8,8 @@ using PetAdoptionCRM.Models;
 namespace PetAdoptionCRM.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20170520173736_Initial")]
-    partial class Initial
+    [Migration("20170522011556_AddPetsBreedsSpecies")]
+    partial class AddPetsBreedsSpecies
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -173,6 +173,95 @@ namespace PetAdoptionCRM.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("PetAdoptionCRM.Models.Breed", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name");
+
+                    b.Property<int>("SpeciesId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SpeciesId");
+
+                    b.ToTable("Breeds");
+                });
+
+            modelBuilder.Entity("PetAdoptionCRM.Models.Pet", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("About")
+                        .HasColumnType("varchar(MAX)");
+
+                    b.Property<string>("AddedBy");
+
+                    b.Property<bool>("Adopted");
+
+                    b.Property<string>("ApplicationUserId");
+
+                    b.Property<DateTime>("BirthDate");
+
+                    b.Property<int>("BreedId");
+
+                    b.Property<DateTime>("IntakeDate");
+
+                    b.Property<string>("Name");
+
+                    b.Property<bool>("Neutered");
+
+                    b.Property<string>("Sex");
+
+                    b.Property<string>("Size");
+
+                    b.Property<int>("SpeciesId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("BreedId");
+
+                    b.HasIndex("SpeciesId");
+
+                    b.ToTable("Pets");
+                });
+
+            modelBuilder.Entity("PetAdoptionCRM.Models.Species", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("DisplayName");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Species");
+                });
+
+            modelBuilder.Entity("PetAdoptionCRM.Models.UserProfile", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("ApplicationUserId");
+
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("LastName");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.ToTable("UserProfiles");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole")
@@ -208,6 +297,38 @@ namespace PetAdoptionCRM.Migrations
                         .WithMany("Roles")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("PetAdoptionCRM.Models.Breed", b =>
+                {
+                    b.HasOne("PetAdoptionCRM.Models.Species", "Species")
+                        .WithMany()
+                        .HasForeignKey("SpeciesId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("PetAdoptionCRM.Models.Pet", b =>
+                {
+                    b.HasOne("PetAdoptionCRM.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("PetAdoptionCRM.Models.Breed", "Breed")
+                        .WithMany()
+                        .HasForeignKey("BreedId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("PetAdoptionCRM.Models.Species", "Species")
+                        .WithMany()
+                        .HasForeignKey("SpeciesId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("PetAdoptionCRM.Models.UserProfile", b =>
+                {
+                    b.HasOne("PetAdoptionCRM.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId");
                 });
         }
     }
