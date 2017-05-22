@@ -100,6 +100,7 @@ namespace PetAdoptionCRM.Controllers
                 Pet thisPet = _db.Pets.Include(s => s.Species).Include(s => s.Breed).FirstOrDefault(p => p.Id == Id);
                 PetDetailsViewModel vm = new PetDetailsViewModel();
                 vm.Pet = thisPet;
+                vm.Pet.ImageKey = vm.ModifyImageKey();
                 return View(vm);
             }
             return RedirectToAction("Home", "Index");
