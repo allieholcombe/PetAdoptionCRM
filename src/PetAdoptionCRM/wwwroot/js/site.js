@@ -1,41 +1,54 @@
 ﻿$(function () {
-    
-    function fetchBreeds(species) {
-        $.ajax({
-            url: '@Url.Action("ChangeSpecies","Pets")',
-            data: { species: species },
-            success: function (data) {
-                //call is successfully completed and we got result in data
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-                //some errror, some show err msg to user and log the error  
-                alert(xhr.responseText);
 
+    function fetchBreeds() {
+        console.log("Fetching");
+        //var url = '@Url.Action("PopulateBreedList","Pets")';
+        var url = 'PopulateBreedList';
+        var dropdown = $("#breed-selector");
+        var speciesVal = $("#species-selector option:selected").val();
+        console.log(speciesVal);
+        console.log(typeof speciesVal);
+        $.ajax({
+            url: 'PopulateBreedList',
+            data: { speciesVal: speciesVal },
+            type: "POST",
+            datatype: "json",
+            error: function (xhr, status, error) {
+                console.log("borked");
+                console.log(error);
+            },
+            success: function (json) {
+                $(json).each(function () {
+                    //debugger;
+                    $(document.createElement('option'))
+                                .attr('value', this.id)
+                                .text(this.name)
+                                .appendTo(dropdown);
+                })
             }
-        });
+        })
+        //$.getJSON(url, {species: speciesVal }, function(result){
+        //    dropdown.empty();
+        //    console.log(result);
+        //    $(result).each(function(){
+        //        $(document.createElement('option'))
+        //            .attr('value', this.Id)
+        //            .text(this.Name)
+        //            .appendTo(dropdown);
+        //        if (this.Name != null) {
+        //            console.log(this.Name);
+        //        } else {
+        //            console.log("NULL");
+        //        }
+        //    })
+        //    dropdown.show();
+        //})
+
     }
 
+
     $("#species-selector").change(function () {
-        var species = $("#species-selector option:selected").val();
-        switch (species) {
-            case "dog":
-                break;
-            case "cat":
-                break;
-            case "bird":
-                break;
-            case "barnyard":
-                break;
-            case "reptile":
-                break;
-            case "horse":
-                break;
-            case "pig":
-                break;
-            case "smallfurry":
-                break;
-            default:
-                break;
-        }
+        console.log("Fired");
+        fetchBreeds();
     });
 });

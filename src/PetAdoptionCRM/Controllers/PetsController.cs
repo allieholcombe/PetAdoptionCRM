@@ -45,6 +45,8 @@ namespace PetAdoptionCRM.Controllers
             vm.Species = selectList;
             vm.Pet = new Pet();
             vm.Pet.AddedBy = _userManager.GetUserId(HttpContext.User);
+            List<Breed> breedList = new List<Breed>();
+            ViewBag.Breeds = new SelectList(breedList);
             return View(vm);
         }
 
@@ -57,12 +59,12 @@ namespace PetAdoptionCRM.Controllers
             return RedirectToAction("Index", "Pets");
         }
 
-        public IActionResult PopulateBreedList(string species)
+        public JsonResult PopulateBreedList(string speciesVal)
         {
-            var selectedSpecies = _db.Species.FirstOrDefault(s => s.Name == species);
-            var breeds = new List<Breed>();
-            breeds = _db.Breeds.Where(b => b.SpeciesId == selectedSpecies.Id).ToList();
-            return Json(breeds);
+            var selectedSpecies = _db.Species.FirstOrDefault(s => s.Name == speciesVal);
+            var BreedsList = new List<Breed>();
+            BreedsList = _db.Breeds.Where(b => b.SpeciesId == selectedSpecies.Id).ToList();
+            return Json(BreedsList);
         }
     }
 }

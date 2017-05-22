@@ -20,13 +20,13 @@ namespace PetAdoptionCRM.Migrations
                     Adopted = table.Column<bool>(nullable: false),
                     ApplicationUserId = table.Column<string>(nullable: true),
                     BirthDate = table.Column<DateTime>(nullable: false),
-                    Breed = table.Column<string>(nullable: true),
+                    Breed = table.Column<int>(nullable: true),
                     IntakeDate = table.Column<DateTime>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     Neutered = table.Column<bool>(nullable: false),
                     Sex = table.Column<string>(nullable: true),
                     Size = table.Column<string>(nullable: true),
-                    Species = table.Column<string>(nullable: true)
+                    Species = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {

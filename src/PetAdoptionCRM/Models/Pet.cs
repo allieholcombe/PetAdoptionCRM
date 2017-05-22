@@ -14,9 +14,11 @@ namespace PetAdoptionCRM.Models
 
         public string Name { get; set; }
 
-        public string Species { get; set; }
+        public int SpeciesId { get; set; }
+        public virtual Species Species { get; set; }
 
-        public string Breed { get; set; }
+        public int BreedId { get; set; }
+        public virtual Breed Breed { get; set; }
 
         public DateTime BirthDate { get; set; }
 
