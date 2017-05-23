@@ -124,22 +124,13 @@ namespace PetAdoptionCRM.Controllers
         }
 
         //FIGURE OUT WHY LINK ON DETAILS PAGE GOES TO POST INSTEAD OF GET
-
+        [HttpGet]
         public IActionResult Edit(int id)
         {
             if (User.Identity.IsAuthenticated)
             {
                 EditPetViewModel vm = new EditPetViewModel();
-                vm.Pet = _db.Pets.FirstOrDefault(p => p.Id == id);
-                List<Species> speciesList = _db.Species.Skip(2).Take(2).ToList();
-                IEnumerable<SelectListItem> selectList =
-                    from s in speciesList
-                    select new SelectListItem
-                    {
-                        Text = s.DisplayName,
-                        Value = s.Id.ToString()
-                    };
-                vm.Species = selectList;
+                vm.Pet = _db.Pets.Include(p => p.Species).FirstOrDefault(p => p.Id == id);
                 //List<Breed> breedList = _db.Breeds.Where(s => s.SpeciesId == vm.Pet.SpeciesId).ToList();
                 //IEnumerable<SelectListItem> breedSelectList =
                 //    from b in breedList

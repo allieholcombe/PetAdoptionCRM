@@ -5,13 +5,14 @@
         var url = 'PopulateBreedList';
         var dropdown = $("#breed-selector");
         var speciesVal = $("#species-selector option:selected").val();
+        console.log(speciesVal);
         debugger;
         if (speciesVal !== null) {
             dropdown.empty();
             $.ajax({
                 url: 'PopulateBreedList',
                 data: { speciesVal: speciesVal },
-                type: "POST",
+                type: "Post",
                 datatype: "json",
                 error: function (xhr, status, error) {
                     console.log("borked");
@@ -54,21 +55,10 @@
         });
     }
 
-    ////On page load, change breeds list
-    //$(window).on('load', function (e) {
-    //    fetchBreeds(e);
-    //})
-
-
     //When species dropdown changes, change breeds list
     $("#species-selector").change(function () {
         fetchBreeds();
     });
-
-    //open add breed modal on click
-    //$("i.add-breed").click(function () {
-    //    $(".add-breed-modal").show();
-    //})
 
     //submit add breed form
     $("button.submit").click(function (e) {
@@ -96,6 +86,4 @@
             $('#modal-help-block').hide();
         }
     })
-
-
 });

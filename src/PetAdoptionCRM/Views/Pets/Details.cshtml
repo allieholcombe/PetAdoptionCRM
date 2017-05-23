@@ -26,6 +26,7 @@
                 </li>
             </ul>
             @Html.ActionLink("Edit " + @Model.Pet.Name, "Edit", "Pets", new { id = @Model.Pet.Id }, new { @class = "btn btn-danger" })
+            @Html.ActionLink("Delete " + @Model.Pet.Name, "Delete", "Pets", new { id = @Model.Pet.Id }, new { @class = "btn btn-danger" })
         </div>
     </div>
 </div>

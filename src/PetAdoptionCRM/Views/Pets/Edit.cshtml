@@ -14,6 +14,7 @@
 {
     @Html.HiddenFor(m => m.Pet.Id)
     @Html.HiddenFor(m => m.Pet.AddedBy)
+    @Html.HiddenFor(m => m.Pet.SpeciesId)
 
     <div class="form-group">
         @Html.LabelFor(m => m.Pet.Name)
@@ -23,13 +24,13 @@
 
     <div class="form-group">
         @Html.Label("Species")
-        @Html.DropDownListFor(m => m.Pet.SpeciesId, @Model.Species, "Select Species", new { @class = "form-control", @id = "species-selector", required = "required" })
+        @Html.DropDownListFor(m => m.Pet.SpeciesId, @Model.Species, "Select Species", new { @class = "form-control", @id = "species-selector-edit", required = "required" })
         @Html.ValidationMessageFor(m => m.Pet.SpeciesId, null, new { @class = "text-danger" })
     </div>
 
     <div class="form-group" id="breed-form-div-edit">
         @Html.Label("Breed")<i class="fa fa-plus add-breed" data-toggle="modal" data-target=".add-breed-modal" aria-label="Add Breed"></i>
-        @Html.DropDownListFor(m => m.Pet.BreedId, Enumerable.Empty<SelectListItem>(), "-- Loading Values --", new { @class = "form-control", @id = "breed-selector" })
+        @Html.TextBox(@Model.Pet.Species.DisplayName, new { disabled = "true" })
         @Html.ValidationMessageFor(m => m.Pet.BreedId, null, new { @class = "text-danger" })
     </div>
 
@@ -48,7 +49,7 @@
             @Html.ValidationMessageFor(m => m.Pet.About, null, new { @class = "text-danger" })
         </div>
 
-        <input type="submit" value="Save Changes" class="btn btn-primary" /> @Html.ActionLink("Back to " + Model.Pet.Name, "Details", null, new { id = Model.Pet.Id }, new { @class = "btn btn-default" })
+        @*<input type="submit" value="Save Changes" class="btn btn-primary" />*@ @Html.ActionLink("Back to " + Model.Pet.Name, "Details", null, new { id = Model.Pet.Id }, new { @class = "btn btn-default" })
 }
 
 <div class="modal fade add-breed-modal">
