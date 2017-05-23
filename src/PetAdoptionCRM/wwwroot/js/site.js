@@ -1,10 +1,14 @@
 ﻿$(function () {
 
     //Return json with breeds list from db
-    function fetchBreeds() {
+    function fetchBreeds(speciesId) {
         var url = 'PopulateBreedList';
         var dropdown = $("#breed-selector");
-        var speciesVal = $("#species-selector option:selected").val();
+        if (speciesId === null) {
+            var speciesVal = $("#species-selector option:selected").val();
+        } else {
+            var speciesVal = speciesId;
+        }
         if (speciesVal === "3" || speciesVal === "4") {
             dropdown.empty();
             $.ajax({
@@ -34,10 +38,29 @@
         }
     }
 
+    function addBreed(speciesVal, inputVal) {
+        var params = { name: inputVal, speciesId: speciesVal }; // etc.
+
+        var ser_data = jQuery.param(params);
+        console.log(ser_data);
+        debugger;
+
+        $.ajax({
+            url: 'AddBreed',
+            type: 'POST',
+            dataType: 'json',
+            data: ser_data,
+            success: function (result) {
+                var speciesId = result.Id;
+                fetchBreeds(speciesId);
+            }
+        });
+    }
+
 
     //When species dropdown changes, change breeds list
     $("#species-selector").change(function () {
-        fetchBreeds();
+        fetchBreeds(null);
     });
 
     //open add breed modal on click
@@ -48,10 +71,12 @@
     //submit add breed form
     $("button.submit").click(function (e) {
         e.preventDefault();
-        var speciesVal = $("#species-selector option:selected").val();
+        var speciesVal = parseInt($("#species-selector option:selected").val());
         var inputVal = $("input.new-breed").val();
         if (inputVal !== "") {
             $('.add-breed-modal').modal('hide');
+            //debugger;
+            addBreed(speciesVal, inputVal);
         } else {
             $('div.form-group.new-breed').addClass('has-error');
             $('#modal-help-block').show();

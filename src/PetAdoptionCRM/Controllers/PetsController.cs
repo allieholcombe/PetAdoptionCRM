@@ -110,5 +110,14 @@ namespace PetAdoptionCRM.Controllers
             }
             return RedirectToAction("Home", "Index");
         }
+
+        [HttpPost]
+        public IActionResult AddBreed(int speciesId, string name)
+        {
+            Breed newBreed = new Breed { SpeciesId = speciesId, Name = name };
+            _db.Breeds.Add(newBreed);
+            _db.SaveChanges();
+            return Json(newBreed);
+        }
     }
 }
