@@ -1,11 +1,25 @@
-﻿body {
+﻿html {
+    display: flex;
+    min-height: 100vh;
+}
+body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
 
+/*Navbar*/
+.navbar {
+    margin-bottom: 0px;
+}
+
+
+/*Add Pet Page*/
 #breed-form-div {
     display: none;
 }
 
-//Radio Buttons adapted from http://codepen.io/JiveDig/pen/jbdJXR
+/*Radio Buttons adapted from http://codepen.io/JiveDig/pen/jbdJXR*/
 .switch-title {
     margin-bottom: 6px;
 }
@@ -57,14 +71,19 @@
     }
 }
 
-//For Pets Index
+.container {
+    flex-grow: 1;
+}
+
+/*For Pets Index*/
 .all-pets {
+    margin: 0 auto;
+    width: 80%;
     border: 2px solid red;
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;
     padding: 1%;
-    min-height: 100vh;
 }
 
 .pet-tile {
@@ -73,6 +92,7 @@
     border: 1px solid #e7e7e7;
     flex: 0 0 24%;
     margin: 1% 0;
+    flex-grow: 0;
 
     &:nth-child(4n-1) {
         margin-left: 1%;
