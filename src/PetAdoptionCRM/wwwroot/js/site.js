@@ -2,16 +2,13 @@
 
 
     function fetchBreeds() {
-        //console.log("Fetching");
-        //var url = '@Url.Action("PopulateBreedList","Pets")';
         var url = 'PopulateBreedList';
+        console.log(url);
         var dropdown = $("#breed-selector");
         var speciesVal = $("#species-selector option:selected").val();
-        if (speciesVal === 3 || speciesVal === 4) {
-
+        console.log(speciesVal);
+        //if (speciesVal === 3 || speciesVal === 4) {
             dropdown.empty();
-            //console.log(speciesVal);
-            //console.log(typeof speciesVal);
             $.ajax({
                 url: 'PopulateBreedList',
                 data: { speciesVal: speciesVal },
@@ -36,11 +33,12 @@
 
                 }
             })
-        }
+        //}
     }
 
 
     $("#species-selector").change(function () {
         fetchBreeds();
+        console.log("fired");
     });
 });
