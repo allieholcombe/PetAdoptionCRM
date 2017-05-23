@@ -50,8 +50,24 @@
         e.preventDefault();
         var speciesVal = $("#species-selector option:selected").val();
         var inputVal = $("input.new-breed").val();
-        $('.add-breed-modal').modal('hide');
-        console.log(inputVal);
+        if (inputVal !== "") {
+            $('.add-breed-modal').modal('hide');
+        } else {
+            $('div.form-group.new-breed').addClass('has-error');
+            $('#modal-help-block').show();
+        }
+
+    })
+
+    //field clears on close
+    $(document).on('hide.bs.modal', '.add-breed-modal', function (e) {
+        var formGroup = $(this).find('div.form-group')
+        var input = $("input.new-breed.form-control");
+        $(input).val("");
+        if ($(formGroup).hasClass('has-error')) {
+            $(formGroup).removeClass('has-error');
+            $('#modal-help-block').hide();
+        }
     })
 
 
