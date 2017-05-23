@@ -148,20 +148,16 @@ namespace PetAdoptionCRM.Controllers
         public IActionResult Edit(AddPetViewModel vm)
         {
             Pet editedPet = vm.Pet;
-            //var dbPet = _db.Pets.FirstOrDefault(p => p.Id == vm.Pet.Id);
-            //if (dbPet.Name != editedPet.Name)
-            //{
-            //    dbPet.Name = editedPet.Name;
-            //}
-            //if (dbPet.Sex != editedPet.Sex)
-            //{
-            //    dbPet.Sex = editedPet.Sex;
-            //}
-            //if (dbPet.About != editedPet.About)
-            //{
-            //    dbPet.About = editedPet.About;
-            //}
             _db.Entry(editedPet).State = EntityState.Modified;
+            _db.SaveChanges();
+            return RedirectToAction("Index", "Pets");
+        }
+
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            var thisPet = _db.Pets.FirstOrDefault(p => p.Id == id);
+            _db.Pets.Remove(thisPet);
             _db.SaveChanges();
             return RedirectToAction("Index", "Pets");
         }

@@ -34,6 +34,7 @@
         }
     }
 
+    //Add breed via AJAX
     function addBreed(speciesVal, inputVal) {
         var params = { name: inputVal, speciesId: speciesVal }; // etc.
 
@@ -86,4 +87,39 @@
             $('#modal-help-block').hide();
         }
     })
+
+    //delete modal triggers action
+    $("button.submit-delete").click(function () {
+        var petId = parseInt($('#delete-pet-id').val());
+        debugger;
+        //var options = {};
+        //options.url = "/pets/delete";
+        //options.type = "POST";
+        ////options.data = { "id": petId };
+        //options.contentType = "application/json";
+        //options.dataType = "json";
+        //options.success = function (msg) {
+        //    alert(msg);
+        //};
+        //options.error = function () {
+        //    alert("Error while deleting the records!");
+        //};
+        //$.ajax(
+        //    ;
+        $.ajax({
+            url: '/pets/delete',
+            type: 'POST',
+            async: true,
+            dataType: 'json',
+            data: { "id": petId },
+            success: function (msg) {
+                alert(msg);
+            }
+        });
+    });
+
+    //e.preventDefault();
+    //debugger;
+    //
+    //
 });

@@ -26,7 +26,30 @@
                 </li>
             </ul>
             @Html.ActionLink("Edit " + @Model.Pet.Name, "Edit", "Pets", new { id = @Model.Pet.Id }, new { @class = "btn btn-danger" })
-            @Html.ActionLink("Delete " + @Model.Pet.Name, "Delete", "Pets", new { id = @Model.Pet.Id }, new { @class = "btn btn-danger" })
+            <button class="btn btn-danger" data-toggle="modal" data-target=".delete-pet-modal">Delete @Model.Pet.Name</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade delete-pet-modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Delete @Model.Pet.Name</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="Delete" class="delete-pet">
+                    <input type="hidden" value="@Model.Pet.Id" id="delete-pet-id"/>
+                    @Html.Hidden("RedirectTo", Url.Action("Index", "Pets"));
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary submit-delete">Delete</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            </div>
         </div>
     </div>
 </div>
