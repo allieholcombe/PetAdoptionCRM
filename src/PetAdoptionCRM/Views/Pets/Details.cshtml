@@ -25,6 +25,7 @@
                     <span class="title">Sex : </span> @Model.Pet.Sex
                 </li>
             </ul>
+            @Html.ActionLink("Edit " + Model.Pet.Name, "Edit", "Pets", new { id = Model.Pet.Id }, new { @class = "btn btn-danger" })
         </div>
     </div>
 </div>

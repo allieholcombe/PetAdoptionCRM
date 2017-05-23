@@ -119,5 +119,36 @@ namespace PetAdoptionCRM.Controllers
             _db.SaveChanges();
             return Json(newBreed);
         }
+
+        public IActionResult Edit(int id)
+        {
+            if (User.Identity.IsAuthenticated)
+            {
+                AddPetViewModel vm = new AddPetViewModel();
+                List<Species> speciesList = _db.Species.Skip(2).Take(2).ToList();
+                IEnumerable<SelectListItem> selectList =
+                    from s in speciesList
+                    select new SelectListItem
+                    {
+                        Text = s.DisplayName,
+                        Value = s.Id.ToString()
+                    };
+                vm.Species = selectList;
+                vm.Pet = _db.Pets.FirstOrDefault(p => p.Id == id);
+                List<Breed> breedList = new List<Breed>();
+                ViewBag.BreedList = new SelectList(breedList);
+                return View(vm);
+            }
+            return RedirectToAction("Index", "Home");
+        }
+
+        [HttpPost]
+        public IActionResult Edit(AddPetViewModel vm)
+        {
+            Pet currentPet = vm.Pet;
+            _db.Entry(currentPet).State = EntityState.Modified;
+            _db.SaveChanges();
+            return RedirectToAction("Details", "Pets", new { id = currentPet.Id });
+        }
     }
 }
