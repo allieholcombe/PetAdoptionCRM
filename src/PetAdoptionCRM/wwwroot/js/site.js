@@ -1,9 +1,7 @@
 ﻿$(function () {
 
     //Return json with breeds list from db
-    function fetchBreeds(e) {
-        debugger;
-        e.preventDefault();
+    function fetchBreeds() {
         var url = 'PopulateBreedList';
         var dropdown = $("#breed-selector");
         var speciesVal = $("#species-selector option:selected").val();
@@ -56,12 +54,10 @@
         });
     }
 
-    //On page load, change breeds list
-    $(window).on('load', function (e) {
-        debugger;
-        e.preventDefault();
-        fetchBreeds(e);
-    })
+    ////On page load, change breeds list
+    //$(window).on('load', function (e) {
+    //    fetchBreeds(e);
+    //})
 
 
     //When species dropdown changes, change breeds list
