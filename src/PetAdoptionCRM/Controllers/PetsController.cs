@@ -34,10 +34,10 @@ namespace PetAdoptionCRM.Controllers
             {
                 PetsIndexViewModel vm = new PetsIndexViewModel();
                 vm.AllPets = _db.Pets.Include(s => s.Species).Include(s => s.Breed).OrderByDescending(s => s.Id).ToList();
-                foreach (var pet in vm.AllPets)
-                {
-                    pet.ImageKey = vm.ModifyImageKey(pet);
-                }
+                //foreach (var pet in vm.AllPets)
+                //{
+                //    pet.ImageKey = vm.ModifyImageKey(pet);
+                //}
 
                 if (vm.AllPets.Count() < 1)
                 {
@@ -144,9 +144,26 @@ namespace PetAdoptionCRM.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        //[HttpPost]
-        //public IActionResult Edit(AddPetViewModel vm)
-        //{
-        //}
+        [HttpPost]
+        public IActionResult Edit(AddPetViewModel vm)
+        {
+            Pet editedPet = vm.Pet;
+            //var dbPet = _db.Pets.FirstOrDefault(p => p.Id == vm.Pet.Id);
+            //if (dbPet.Name != editedPet.Name)
+            //{
+            //    dbPet.Name = editedPet.Name;
+            //}
+            //if (dbPet.Sex != editedPet.Sex)
+            //{
+            //    dbPet.Sex = editedPet.Sex;
+            //}
+            //if (dbPet.About != editedPet.About)
+            //{
+            //    dbPet.About = editedPet.About;
+            //}
+            _db.Entry(editedPet).State = EntityState.Modified;
+            _db.SaveChanges();
+            return RedirectToAction("Index", "Pets");
+        }
     }
 }

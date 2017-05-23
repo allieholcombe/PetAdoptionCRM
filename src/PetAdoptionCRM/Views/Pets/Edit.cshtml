@@ -15,6 +15,7 @@
     @Html.HiddenFor(m => m.Pet.Id)
     @Html.HiddenFor(m => m.Pet.AddedBy)
     @Html.HiddenFor(m => m.Pet.SpeciesId)
+    @Html.HiddenFor(m => m.Pet.BreedId)
 
     <div class="form-group">
         @Html.LabelFor(m => m.Pet.Name)
@@ -49,7 +50,7 @@
             @Html.ValidationMessageFor(m => m.Pet.About, null, new { @class = "text-danger" })
         </div>
 
-        @*<input type="submit" value="Save Changes" class="btn btn-primary" />*@ @Html.ActionLink("Back to " + Model.Pet.Name, "Details", null, new { id = Model.Pet.Id }, new { @class = "btn btn-default" })
+        <input type="submit" value="Save Changes" class="btn btn-primary" />@Html.ActionLink("Back to " + Model.Pet.Name, "Details", null, new { id = Model.Pet.Id }, new { @class = "btn btn-default" })
 }
 
 <div class="modal fade add-breed-modal">

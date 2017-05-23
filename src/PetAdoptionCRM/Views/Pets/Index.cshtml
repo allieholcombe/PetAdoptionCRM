@@ -9,7 +9,8 @@
     @if (@Model.AllPets.Count() == 1)
     {
         <div class="pet-tile">
-            <img runat="server" src="@Model.OnePet.ImageKey">
+            @*<img runat="server" src="@Model.OnePet.ImageKey">*@
+            <img src="~/images/defaultpet.png" />
             <h3>@Html.ActionLink(@Model.OnePet.Name, "Details", "Pets", new { id = @Model.OnePet.Id })</h3>
             <p>@Model.OnePet.Species.DisplayName</p>
             <p>@Model.OnePet.Breed.Name</p>
@@ -21,7 +22,8 @@
         @foreach (var pet in @Model.AllPets)
         {
             <div class="pet-tile">
-                <img runat="server" src="@pet.ImageKey">
+                @*<img runat="server" src="@pet.ImageKey">*@
+                <img src="~/images/defaultpet.png" />
                 <h3>@Html.ActionLink(@pet.Name, "Details", "Pets", new { id = @pet.Id })</h3>
                 <p>@pet.Species.DisplayName</p>
                 <p>@pet.Breed.Name</p>
