@@ -130,6 +130,7 @@ namespace PetAdoptionCRM.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 EditPetViewModel vm = new EditPetViewModel();
+                vm.Pet = _db.Pets.FirstOrDefault(p => p.Id == id);
                 List<Species> speciesList = _db.Species.Skip(2).Take(2).ToList();
                 IEnumerable<SelectListItem> selectList =
                     from s in speciesList
@@ -139,9 +140,15 @@ namespace PetAdoptionCRM.Controllers
                         Value = s.Id.ToString()
                     };
                 vm.Species = selectList;
-                vm.Pet = _db.Pets.FirstOrDefault(p => p.Id == id);
-                List<Breed> breedList = new List<Breed>();
-                ViewBag.BreedList = new SelectList(breedList);
+                //List<Breed> breedList = _db.Breeds.Where(s => s.SpeciesId == vm.Pet.SpeciesId).ToList();
+                //IEnumerable<SelectListItem> breedSelectList =
+                //    from b in breedList
+                //    select new SelectListItem
+                //    {
+                //        Text = b.Name,
+                //        Value = b.Id.ToString()
+                //    };
+                //ViewBag.BreedList = new SelectList();
                 return View(vm);
             }
             return RedirectToAction("Index", "Home");
