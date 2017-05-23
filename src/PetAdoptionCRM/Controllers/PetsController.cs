@@ -105,7 +105,10 @@ namespace PetAdoptionCRM.Controllers
                 Pet thisPet = _db.Pets.Include(s => s.Species).Include(s => s.Breed).FirstOrDefault(p => p.Id == Id);
                 PetDetailsViewModel vm = new PetDetailsViewModel();
                 vm.Pet = thisPet;
-                vm.Pet.ImageKey = vm.ModifyImageKey();
+                //if (vm.Pet != null)
+                //{
+                //    vm.Pet.ImageKey = vm.ModifyImageKey();
+                //}
                 return View(vm);
             }
             return RedirectToAction("Home", "Index");
@@ -120,11 +123,13 @@ namespace PetAdoptionCRM.Controllers
             return Json(newBreed);
         }
 
+        //FIGURE OUT WHY LINK ON DETAILS PAGE GOES TO POST INSTEAD OF GET
+
         public IActionResult Edit(int id)
         {
             if (User.Identity.IsAuthenticated)
             {
-                AddPetViewModel vm = new AddPetViewModel();
+                EditPetViewModel vm = new EditPetViewModel();
                 List<Species> speciesList = _db.Species.Skip(2).Take(2).ToList();
                 IEnumerable<SelectListItem> selectList =
                     from s in speciesList
@@ -142,13 +147,9 @@ namespace PetAdoptionCRM.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        [HttpPost]
-        public IActionResult Edit(AddPetViewModel vm)
-        {
-            Pet currentPet = vm.Pet;
-            _db.Entry(currentPet).State = EntityState.Modified;
-            _db.SaveChanges();
-            return RedirectToAction("Details", "Pets", new { id = currentPet.Id });
-        }
+        //[HttpPost]
+        //public IActionResult Edit(AddPetViewModel vm)
+        //{
+        //}
     }
 }

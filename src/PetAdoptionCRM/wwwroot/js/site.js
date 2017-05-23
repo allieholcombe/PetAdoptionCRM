@@ -5,6 +5,7 @@
         var url = 'PopulateBreedList';
         var dropdown = $("#breed-selector");
         var speciesVal = $("#species-selector option:selected").val();
+        debugger;
         if (speciesVal !== null) {
             dropdown.empty();
             $.ajax({
