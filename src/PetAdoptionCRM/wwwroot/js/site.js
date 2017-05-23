@@ -4,38 +4,34 @@
     function fetchBreeds(speciesId) {
         var url = 'PopulateBreedList';
         var dropdown = $("#breed-selector");
-        if (speciesId === null) {
-            var speciesVal = $("#species-selector option:selected").val();
-        } else {
-            var speciesVal = speciesId;
-        }
-        if (speciesVal === "3" || speciesVal === "4") {
-            dropdown.empty();
-            $.ajax({
-                url: 'PopulateBreedList',
-                data: { speciesVal: speciesVal },
-                type: "POST",
-                datatype: "json",
-                error: function (xhr, status, error) {
-                    console.log("borked");
-                    console.log(error);
-                },
-                success: function (json) {
-                    $(json).each(function () {
-                        //debugger;
-                        $(document.createElement('option'))
-                                    .attr('value', this.id)
-                                    .text(this.name)
-                                    .appendTo(dropdown);
-                    })
-                },
-                complete: function () {
-                    $("#breed-form-div").show();
-                }
-            })
-        } else {
-            $("#breed-form-div").hide();
-        }
+        //if (speciesId === null) {
+   var speciesVal = $("#species-selector option:selected").val();
+        //} else {
+        //    var speciesVal = speciesId;
+        //}
+        console.log(speciesVal);
+        dropdown.empty();
+        $.ajax({
+            url: 'PopulateBreedList',
+            data: { speciesVal: speciesVal },
+            type: "POST",
+            datatype: "json",
+            error: function (xhr, status, error) {
+                console.log("borked");
+                console.log(error);
+            },
+            success: function (json) {
+                $(json).each(function () {
+                    $(document.createElement('option'))
+                                .attr('value', this.id)
+                                .text(this.name)
+                                .appendTo(dropdown);
+                })
+            },
+            complete: function () {
+                $("#breed-form-div").show();
+            }
+        })
     }
 
     function addBreed(speciesVal, inputVal) {
@@ -43,7 +39,7 @@
 
         var ser_data = jQuery.param(params);
         console.log(ser_data);
-        debugger;
+        var speciesId;
 
         $.ajax({
             url: 'AddBreed',
@@ -51,7 +47,9 @@
             dataType: 'json',
             data: ser_data,
             success: function (result) {
-                var speciesId = result.Id;
+                speciesId = result.Id;
+            },
+            complete: function () {
                 fetchBreeds(speciesId);
             }
         });
