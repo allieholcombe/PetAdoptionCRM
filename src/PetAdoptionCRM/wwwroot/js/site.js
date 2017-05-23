@@ -34,10 +34,25 @@
         }
     }
 
+
     //When species dropdown changes, change breeds list
     $("#species-selector").change(function () {
         fetchBreeds();
     });
+
+    //open add breed modal on click
+    //$("i.add-breed").click(function () {
+    //    $(".add-breed-modal").show();
+    //})
+
+    //submit add breed form
+    $("button.submit").click(function (e) {
+        e.preventDefault();
+        var speciesVal = $("#species-selector option:selected").val();
+        var inputVal = $("input.new-breed").val();
+        $('.add-breed-modal').modal('hide');
+        console.log(inputVal);
+    })
 
 
 });

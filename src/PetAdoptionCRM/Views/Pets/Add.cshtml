@@ -27,7 +27,7 @@
     </div>
 
         <div class="form-group" id="breed-form-div">
-            @Html.Label("Breed")
+            @Html.Label("Breed")<i class="fa fa-plus add-breed" data-toggle="modal" data-target=".add-breed-modal" aria-label="Add Breed"></i>
             @Html.DropDownListFor(m => m.Pet.BreedId, Enumerable.Empty<SelectListItem>(), "-- Loading Values --", new { @class = "form-control", @id="breed-selector" })
             @Html.ValidationMessageFor(m => m.Pet.BreedId, null, new { @class = "text-danger" })
         </div>
@@ -73,3 +73,28 @@
 
     <input type="submit" value="Add Pet" class="btn btn-primary" /> @Html.ActionLink("Back", "Index", null, null, new { @class = "btn btn-default" })
 }
+
+<div class="modal fade add-breed-modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Add Breed</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="NewBreed" class="new-destination">
+                    <div class="form-group">
+                        <input type="text" class ="new-breed form-control" name="newBreed" placeholder="ex. Neapolitan Mastiff"/>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary submit">Add Breed</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+

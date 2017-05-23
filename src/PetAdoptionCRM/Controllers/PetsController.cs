@@ -58,7 +58,7 @@ namespace PetAdoptionCRM.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 AddPetViewModel vm = new AddPetViewModel();
-                List<Species> speciesList = _db.Species.ToList();
+                List<Species> speciesList = _db.Species.Skip(2).Take(2).ToList();
                 IEnumerable<SelectListItem> selectList =
                     from s in speciesList
                     select new SelectListItem
