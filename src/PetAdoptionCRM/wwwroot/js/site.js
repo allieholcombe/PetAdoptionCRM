@@ -92,20 +92,6 @@
     $("button.submit-delete").click(function () {
         var petId = parseInt($('#delete-pet-id').val());
         debugger;
-        //var options = {};
-        //options.url = "/pets/delete";
-        //options.type = "POST";
-        ////options.data = { "id": petId };
-        //options.contentType = "application/json";
-        //options.dataType = "json";
-        //options.success = function (msg) {
-        //    alert(msg);
-        //};
-        //options.error = function () {
-        //    alert("Error while deleting the records!");
-        //};
-        //$.ajax(
-        //    ;
         $.ajax({
             url: '/pets/delete',
             type: 'POST',
@@ -114,12 +100,13 @@
             data: { "id": petId },
             success: function (msg) {
                 alert(msg);
+
+
+            },
+            complete: function () {
+                $('.delete-pet-modal').modal('hide');
+                top.location.href = '/pets/';
             }
         });
     });
-
-    //e.preventDefault();
-    //debugger;
-    //
-    //
 });
