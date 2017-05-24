@@ -62,5 +62,5 @@
 
 <div class="add-pet-link">
     <a href="@Url.Action("Edit", "Pets", new { id = Model.Pet.Id })"><i class="fa fa-pencil add-breed" aria-label="Edit Pet"></i></a>
-    <a href="@Url.Action("Delete", "Pets", new { id = Model.Pet.Id })" data-toggle="modal" data-target=".delete-pet-modal"><i class="fa fa-times-circle add-breed" aria-label="Delete Pet"></i></a>
+    <a data-toggle="modal" data-target=".delete-pet-modal"><i class="fa fa-times-circle add-breed" aria-label="Delete Pet"></i></a>
 </div>
