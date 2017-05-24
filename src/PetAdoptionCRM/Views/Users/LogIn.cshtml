@@ -8,7 +8,7 @@
 
 @model LoginViewModel
 
-<h2>Register a new Account</h2>
+<h2>Log In</h2>
 
 @using (Html.BeginForm("Login", "Users", FormMethod.Post))
 {
@@ -22,5 +22,5 @@
         @Html.TextBoxFor(m => m.Password, new { @class = "form-control", type="password" })
     </div>
 
-    <input type="submit" value="Login" class="btn btn-primary" />
+    <input type="submit" value="Log In" class="btn btn-primary" />
 }

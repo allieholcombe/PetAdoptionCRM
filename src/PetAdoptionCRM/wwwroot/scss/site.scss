@@ -2,20 +2,37 @@
 $med-blue: #3d6098;
 $med-red: #f04b4c;
 $lt-gray: #e7e7e7;
+$deep-gray: #777;
 
 html {
     display: flex;
     min-height: 100vh;
 }
+
 body {
     flex-grow: 1;
     display: flex;
     flex-direction: column;
 }
 
+h1, h2, h3, h4, h5 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+a:hover, a:focus, a:active {
+    text-decoration: none;
+}
+
 /*Navbar*/
 .navbar {
     margin-bottom: 0px;
+}
+
+a.navbar-brand {
+    font-family: 'Montserrat Subrayada', sans-serif;
+    color: $deep-gray;
+    padding: 15px;
+    font-size: 40px;
 }
 
 
@@ -26,6 +43,7 @@ body {
 
 i.add-breed {
     margin-left: 10px;
+
     &:hover {
         color: $med-red;
     }
@@ -99,7 +117,7 @@ i.add-breed {
 .all-pets {
     margin: 0 auto;
     width: 80%;
-    border: 2px solid red;
+    /*border: 2px solid red;*/
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;
@@ -125,5 +143,37 @@ i.add-breed {
 
     img {
         max-width: 100%;
+    }
+    h3 {
+        text-transform: uppercase;
+        font-size: 30px;
+        text-align: center;
+    }
+}
+
+/* Pet-details page*/
+
+.pet-details {
+    margin: 0 auto;
+    max-width: 80%;
+    margin-top: 20px;
+    img {
+        max-width: 100%;
+        padding: 10px;
+    }
+    h1 {
+        text-transform: uppercase;
+        color: $deep-gray;
+        font-size: 40px;
+    }
+    span.title {
+        font-weight: 700;
+    }
+    .action-buttons {
+        text-align: center;
+    }
+    .content {
+        margin-top: 15px;
+        /*margin-left: 30px;*/
     }
 }

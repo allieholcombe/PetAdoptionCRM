@@ -7,27 +7,37 @@
 
 @model PetDetailsViewModel
 
-<h1>@Model.Pet.Name</h1>
 <div class="pet-details">
     <div class="row">
         <div class="col-md-5">
             <img src="~/images/defaultpet.png" />
         </div>
         <div class="col-md-7">
-            <ul class="unstyled">
-                <li>
-                    <span class="title">Species : </span> @Model.Pet.Species.DisplayName
-                </li>
-                <li>
-                    <span class="title">Breed : </span> @Model.Pet.Breed.Name
-                </li>
-                <li>
-                    <span class="title">Sex : </span> @Model.Pet.Sex
-                </li>
-            </ul>
-            @Html.ActionLink("Edit " + @Model.Pet.Name, "Edit", "Pets", new { id = @Model.Pet.Id }, new { @class = "btn btn-danger" })
-            <button class="btn btn-danger" data-toggle="modal" data-target=".delete-pet-modal">Delete @Model.Pet.Name</button>
+            <h1>@Model.Pet.Name</h1>
+            <div class="content">
+                <ul class="list-unstyled">
+                    <li>
+                        <span class="title">Species : </span> @Model.Pet.Species.DisplayName
+                    </li>
+                    <li>
+                        <span class="title">Breed : </span> @Model.Pet.Breed.Name
+                    </li>
+                    <li>
+                        <span class="title">Sex : </span> @Model.Pet.Sex
+                    </li>
+                </ul>
+                <p>
+                    <span class="title">About :</span>
+                <p>
+                    @Model.Pet.About
+                </p>
+                </p>
+            </div>    
         </div>
+    </div>
+    <div class="row action-buttons">
+        @Html.ActionLink("Edit " + @Model.Pet.Name, "Edit", "Pets", new { id = @Model.Pet.Id }, new { @class = "btn btn-danger" })
+        <button class="btn btn-danger" data-toggle="modal" data-target=".delete-pet-modal">Delete @Model.Pet.Name</button>
     </div>
 </div>
 
