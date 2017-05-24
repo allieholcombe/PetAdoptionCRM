@@ -18,7 +18,7 @@
                     <p>@Model.OnePet.Breed.Name</p>
                     <p>@Model.OnePet.About</p>
                 </div>
-                @Html.ActionLink("Details", "Details", "Pets", new { id = @Model.OnePet.Id }, new { @class = "btn btn-block btn-default details-button" })
+                @Html.ActionLink("Details", "Details", "Pets", new { id = @Model.OnePet.Id }, new { @class = "btn btn-block btn-default btn-details" })
             </div>
         </div>
     }
@@ -37,7 +37,7 @@
                         <p>@pet.About</p>
                     </div>
                     <div class="details-button">
-                        @Html.ActionLink("Details", "Details", "Pets", new { id = @pet.Id }, new { @class = "btn btn-block btn-default" })
+                        @Html.ActionLink("Details", "Details", "Pets", new { id = @pet.Id }, new { @class = "btn btn-block btn-default btn-details" })
                     </div>
                 </div>   
             </div>

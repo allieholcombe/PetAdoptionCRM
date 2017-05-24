@@ -186,8 +186,18 @@ i.add-breed {
         bottom: 5px;
         width: 100%;
         padding: 0 5px;
+
+        .btn-details {
+            border: 0 solid transparent;
+            background-color: #dddddd;
+            &:hover {
+                background-color: $med-blue;
+                color: white;
+            }
+        }
     }
 }
+
 
 .add-pet-link {
     position: absolute;
@@ -235,6 +245,7 @@ i.add-breed {
         margin-top: 15px;
         /*margin-left: 30px;*/
     }
+
     p.about {
         margin-bottom: 0;
     }

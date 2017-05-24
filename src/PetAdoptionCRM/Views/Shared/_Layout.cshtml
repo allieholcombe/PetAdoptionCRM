@@ -34,15 +34,19 @@
                 <a class="navbar-brand" href=@Url.Action("Index", "Home")>AdoptCare</a>
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">@User.Identity.Name</a></li>
-                    <li>
-                        @using (Html.BeginForm("LogOut", "Users"))
-                        {
-                            <input type="submit" class="btn navbar-btn" value="Log Out">
-                        }
-                    </li>
-                </ul>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#">@User.Identity.Name</a></li>
+                        <li>
+                            @using (Html.BeginForm("LogOut", "Users"))
+                            {
+                                <input type="submit" class="btn navbar-btn" value="Log Out">
+                            }
+                        </li>
+                    </ul>
+                }
+
 
             </div>
         </div>
