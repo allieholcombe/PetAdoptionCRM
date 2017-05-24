@@ -8,41 +8,42 @@
 
 @model EditPetViewModel
 
-<h2>Edit @Model.Pet.Name</h2>
+<div class="form-container thumbnail">
+    <h1>Edit @Model.Pet.Name</h1>
 
-@using (Html.BeginForm("Edit", "Pets", FormMethod.Post))
-{
-    @Html.HiddenFor(m => m.Pet.Id)
-    @Html.HiddenFor(m => m.Pet.AddedBy)
-    @Html.HiddenFor(m => m.Pet.SpeciesId)
-    @Html.HiddenFor(m => m.Pet.BreedId)
+    @using (Html.BeginForm("Edit", "Pets", FormMethod.Post))
+    {
+        @Html.HiddenFor(m => m.Pet.Id)
+        @Html.HiddenFor(m => m.Pet.AddedBy)
+        @Html.HiddenFor(m => m.Pet.SpeciesId)
+        @Html.HiddenFor(m => m.Pet.BreedId)
 
-    <div class="form-group">
-        @Html.LabelFor(m => m.Pet.Name)
-        @Html.TextBoxFor(m => m.Pet.Name, new { @class = "form-control" })
-        @Html.ValidationMessageFor(m => m.Pet.Name, null, new { @class = "text-danger" })
-    </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Pet.Name)
+            @Html.TextBoxFor(m => m.Pet.Name, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.Pet.Name, null, new { @class = "text-danger" })
+        </div>
 
-    <div class="form-group">
-        @Html.Label("Species")
-        @Html.TextBox((string) @Model.Pet.Species.DisplayName, @Model.Pet.Species.DisplayName, new { @class = "form-control" , disabled = "true" })
-        @Html.ValidationMessageFor(m => m.Pet.SpeciesId, null, new { @class = "text-danger" })
-    </div>
+        <div class="form-group">
+            @Html.Label("Species")
+            @Html.TextBox((string)@Model.Pet.Species.DisplayName, @Model.Pet.Species.DisplayName, new { @class = "form-control", disabled = "true" })
+            @Html.ValidationMessageFor(m => m.Pet.SpeciesId, null, new { @class = "text-danger" })
+        </div>
 
-    <div class="form-group" id="breed-form-div-edit">
-        @Html.Label("Breed")
-        @Html.TextBox((string)@Model.Pet.Breed.Name, @Model.Pet.Breed.Name, new { @class = "form-control", disabled = "true" })
-        @Html.ValidationMessageFor(m => m.Pet.BreedId, null, new { @class = "text-danger" })
-    </div>
+        <div class="form-group" id="breed-form-div-edit">
+            @Html.Label("Breed")
+            @Html.TextBox((string)@Model.Pet.Breed.Name, @Model.Pet.Breed.Name, new { @class = "form-control", disabled = "true" })
+            @Html.ValidationMessageFor(m => m.Pet.BreedId, null, new { @class = "text-danger" })
+        </div>
 
-    <div class="form-group switch-field">
-        <div class="switch-title">Sex</div>
-        @Html.RadioButtonFor(m => m.Pet.Sex, "Male", new { @id = "male-sex" })
-        <label for="male-sex">Male</label>
-        @Html.RadioButtonFor(m => m.Pet.Sex, "Female", new { @id = "female-sex" })
-        <label for="female-sex">Female</label>
-        @Html.ValidationMessageFor(m => m.Pet.Sex, null, new { @class = "text-danger" })
-    </div>
+        <div class="form-group switch-field">
+            <div class="switch-title">Sex</div>
+            @Html.RadioButtonFor(m => m.Pet.Sex, "Male", new { @id = "male-sex" })
+            <label for="male-sex">Male</label>
+            @Html.RadioButtonFor(m => m.Pet.Sex, "Female", new { @id = "female-sex" })
+            <label for="female-sex">Female</label>
+            @Html.ValidationMessageFor(m => m.Pet.Sex, null, new { @class = "text-danger" })
+        </div>
 
         <div class="form-group">
             @Html.LabelFor(m => m.Pet.About)
@@ -51,7 +52,9 @@
         </div>
 
         <input type="submit" value="Save Changes" class="btn btn-primary" />@Html.ActionLink("Back to " + Model.Pet.Name, "Details", null, new { id = Model.Pet.Id }, new { @class = "btn btn-default" })
-}
+    }
+</div>
+
 
 <div class="modal fade add-breed-modal">
     <div class="modal-dialog" role="document">

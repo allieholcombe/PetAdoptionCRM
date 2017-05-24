@@ -7,7 +7,7 @@
 
 @model PetDetailsViewModel
 
-<div class="pet-details">
+<div class="pet-details thumbnail">
     <div class="row">
         <div class="col-md-5">
             <img src="~/images/defaultpet.png" />
@@ -26,18 +26,14 @@
                         <span class="title">Sex : </span> @Model.Pet.Sex
                     </li>
                 </ul>
-                <p>
+                <p class="about">
                     <span class="title">About :</span>
                 <p>
                     @Model.Pet.About
                 </p>
                 </p>
-            </div>    
+            </div>
         </div>
-    </div>
-    <div class="row action-buttons">
-        @Html.ActionLink("Edit " + @Model.Pet.Name, "Edit", "Pets", new { id = @Model.Pet.Id }, new { @class = "btn btn-danger" })
-        <button class="btn btn-danger" data-toggle="modal" data-target=".delete-pet-modal">Delete @Model.Pet.Name</button>
     </div>
 </div>
 
@@ -52,7 +48,7 @@
             </div>
             <div class="modal-body">
                 <form action="Delete" class="delete-pet">
-                    <input type="hidden" value="@Model.Pet.Id" id="delete-pet-id"/>
+                    <input type="hidden" value="@Model.Pet.Id" id="delete-pet-id" />
                     @Html.Hidden("RedirectTo", Url.Action("Index", "Pets"));
                 </form>
             </div>
@@ -62,4 +58,9 @@
             </div>
         </div>
     </div>
+</div>
+
+<div class="add-pet-link">
+    <a href="@Url.Action("Edit", "Pets", new { id = Model.Pet.Id })"><i class="fa fa-pencil add-breed" aria-label="Edit Pet"></i></a>
+    <a href="@Url.Action("Delete", "Pets", new { id = Model.Pet.Id })" data-toggle="modal" data-target=".delete-pet-modal"><i class="fa fa-times-circle add-breed" aria-label="Delete Pet"></i></a>
 </div>
