@@ -27,7 +27,7 @@
 * Clone solution to local machine  
 `> git clone https://github.com/alexandraholcombe/PetAdoptionCRM.git`  
 * Configure database connections in `appsettings.json` and `Startup.cs`  
-`kljlk`
+[EF Core Connection Strings](https://docs.microsoft.com/en-us/ef/core/miscellaneous/connection-strings)
 
 #### If using .NET Core CLI
 [.NET Core command-line interface (CLI) tools](https://docs.microsoft.com/en-us/dotnet/articles/core/tools/)  
@@ -57,7 +57,7 @@
 * C#
 * Visual Studio 2015 Update 3
 * .NET Core 1.0.0 Preview 2 003131
-* Entity Framework ORM
+* Entity Framework Core ORM
 * ASP.NET Core Identity - *membership system*
 * Bower - *front-end package management*
 
