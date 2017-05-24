@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Register";
+    ViewData["Title"] = "All Pets";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @using PetAdoptionCRM.ViewModels;
@@ -8,28 +8,44 @@
 <div class="all-pets">
     @if (@Model.AllPets.Count() == 1)
     {
-        <div class="pet-tile">
-            @*<img runat="server" src="@Model.OnePet.ImageKey">*@
-            <img src="~/images/defaultpet.png" />
-            <h3>@Html.ActionLink(@Model.OnePet.Name, "Details", "Pets", new { id = @Model.OnePet.Id })</h3>
-            <p>@Model.OnePet.Species.DisplayName</p>
-            <p>@Model.OnePet.Breed.Name</p>
-            <p>@Model.OnePet.About</p>
+        <div class="pet-tile thumbnail">
+            <div class="tile-container">
+                @*<img runat="server" src="@Model.OnePet.ImageKey">*@
+                <img src="~/images/defaultpet.png" />
+                <div class="caption">
+                    <h3>@Html.ActionLink(@Model.OnePet.Name, "Details", "Pets", new { id = @Model.OnePet.Id })</h3>
+                    <p>@Model.OnePet.Species.DisplayName</p>
+                    <p>@Model.OnePet.Breed.Name</p>
+                    <p>@Model.OnePet.About</p>
+                </div>
+                @Html.ActionLink("Details", "Details", "Pets", new { id = @Model.OnePet.Id }, new { @class = "btn btn-block btn-default details-button" })
+            </div>
         </div>
     }
     else
     {
         @foreach (var pet in @Model.AllPets)
         {
-            <div class="pet-tile">
-                @*<img runat="server" src="@pet.ImageKey">*@
-                <img src="~/images/defaultpet.png" />
-                <h3>@Html.ActionLink(@pet.Name, "Details", "Pets", new { id = @pet.Id })</h3>
-                <p>@pet.Species.DisplayName</p>
-                <p>@pet.Breed.Name</p>
-                <p>@pet.About</p>
+            <div class="pet-tile thumbnail">
+                <div class="tile-container">
+                    @*<img runat="server" src="@pet.ImageKey">*@
+                    <img src="~/images/defaultpet.png" />
+                    <div class="caption">
+                        <h3>@Html.ActionLink(@pet.Name, "Details", "Pets", new { id = @pet.Id })</h3>
+                        <p>@pet.Species.DisplayName</p>
+                        <p>@pet.Breed.Name</p>
+                        <p>@pet.About</p>
+                    </div>
+                    <div class="details-button">
+                        @Html.ActionLink("Details", "Details", "Pets", new { id = @pet.Id }, new { @class = "btn btn-block btn-default" })
+                    </div>
+                </div>   
             </div>
 
         }
     }
+</div>
+
+<div class="add-pet-link">
+    <a href="@Url.Action("Add", "Pets")" <i class="fa fa-plus add-breed" aria-label="Add Pet"></i></a>
 </div>

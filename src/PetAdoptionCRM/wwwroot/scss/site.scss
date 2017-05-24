@@ -116,7 +116,7 @@ i.add-breed {
 /*For Pets Index*/
 .all-pets {
     margin: 0 auto;
-    width: 80%;
+    width: 90%;
     /*border: 2px solid red;*/
     display: flex;
     flex-flow: row wrap;
@@ -127,10 +127,13 @@ i.add-breed {
 .pet-tile {
     padding: 10px;
     /*max-width: 23%;*/
-    border: 1px solid #e7e7e7;
+    /*border: 1px solid #e7e7e7;*/
+    position: relative;
     flex: 0 0 24%;
     margin: 1% 0;
     flex-grow: 0;
+    box-shadow: 2px 2px 2px rgba(221, 221, 221, 0.5);
+    /*display: flex;*/
 
     &:nth-child(4n-1) {
         margin-left: 1%;
@@ -148,6 +151,37 @@ i.add-breed {
         text-transform: uppercase;
         font-size: 30px;
         text-align: center;
+        margin-top: 10px;
+    }
+    p:last-of-type {
+        margin-bottom: 0;
+    }
+    .tile-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .caption {
+        flex-grow: 2;
+        margin-bottom: 25px;
+    }
+    .details-button {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, 0);
+    bottom: 5px;
+    width: 100%;
+    padding: 0 5px;
+  }
+}
+
+.add-pet-link {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    a {
+        font-size: 70px;
+        padding: 20px;
     }
 }
 
